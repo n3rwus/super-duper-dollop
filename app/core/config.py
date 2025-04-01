@@ -1,4 +1,5 @@
-from pydantic import BaseSettings
+# app/core/config.py
+from pydantic_settings import BaseSettings  # Changed from pydantic.BaseSettings
 import os
 from dotenv import load_dotenv
 
@@ -18,7 +19,6 @@ class Settings(BaseSettings):
         ALGORITHM (str): Algorithm used for JWT encoding/decoding
         ACCESS_TOKEN_EXPIRE_MINUTES (int): Token expiration time in minutes
     """
-    
     APP_NAME: str = "SocialAPI"
     DB_USER: str = os.getenv("DB_USER", "root")
     DB_PASSWORD: str = os.getenv("DB_PASSWORD", "password")
@@ -31,6 +31,6 @@ class Settings(BaseSettings):
     
     class Config:
         env_file = ".env"
-        
+
+
 settings = Settings()
-    
